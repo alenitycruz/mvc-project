@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+	<div class="alert alert-primary" th:if="${#lists.isEmpty(lista)}">
+	Nenhuma Ingrediente cadastrado.
+	</div>
+	<div class="alert alert-primary" th:if="${mensagem != null}" th:text="${mensagem}"></div>
+	
+	<div th:if="${not #lists.isEmpty(lista)}">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Ingredientes</th>
+					<th>Dt Cadastro</th>
+					<th>Opções</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="ingrediente : ${lista}">
+					<td th:text="${ingrediente.nome}" width="60%"></td>
+					<td th:text="${ingrediente.dtAtualizacao}"></td>
+					<td><a class="btn btn-primary btn-sm" th:href="@{/ingrediente/editar(id=${ingrediente.cadastro})}">Editar</a>
+					<a class="btn btn-primary btn-sm" th:href="@{/ingrediente/excluir(id=${ingrediente.cadastro})}">Excluir</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+</div>
+</html>

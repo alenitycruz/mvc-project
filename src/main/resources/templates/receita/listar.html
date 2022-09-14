@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+	<div class="alert alert-primary" th:if="${#lists.isEmpty(lista)}">
+	Nenhuma receita cadastrada.
+	</div>
+	<div class="alert alert-primary" th:if="${mensagem != null}" th:text="${mensagem}"></div>
+	
+	<div th:if="${not #lists.isEmpty(lista)}">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Receita</th>
+					<th>Ingrediente</th>
+					<th>Modo de Preparo</th>
+					<th>Tempo de Preparo</th>
+					<th>Dt Cadastro</th>
+					<th>Opções</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="receita : ${lista}">
+					<td th:text="${receita.nomeReceita}"></td>
+					<td th:text="${receita.ingrediente.nome}"></td>
+					<td th:text="${receita.modoPreparo}"></td>
+					<td th:text="${receita.tempoPreparo}"></td>
+					<td th:text="${receita.dtAtualizacao}"></td>
+					<td><a class="btn btn-primary btn-sm" th:href="@{/receita/editar(id=${receita.cadastro})}">Editar</a>
+					<a class="btn btn-primary btn-sm" th:href="@{/receita/excluir(id=${receita.cadastro})}" onclick="return confirm('Você realmente deseja excluir esta receita?')">Excluir</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+</div>
+</html>

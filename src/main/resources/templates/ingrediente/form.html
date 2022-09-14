@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+
+<div layout:fragment="content">
+	<div class="card">
+		<div class="card-header">
+			<p class="text-primary">Relação de Ingredientes com suas medidas</p>
+		</div>
+		<div class="card-body">
+			<form method="post" th:object="${ingrediente}">
+				<div class="form-group mb-3">
+					<label for="input-nome">Ingrediente:</label> <input class="form-control"
+						type="text" th:field="*{nome}" id="input-nome" required></input>
+				</div>
+				<button type="submit" class="btn btn-primary">Salvar
+					Ingredientes</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+</html>
